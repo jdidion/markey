@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- TODO: language support? -->
+  <head>
+    <meta charset="utf-8">
+    <title>{{docOptions.title}}</title>
+    <link href="{{style}}" rel="stylesheet"/>
+    <!-- TODO: allow a favicon or use a logo?
+    <link href="" rel="shortcut icon" type="image/png" />
+    -->
+  </head>
+  <body>
+    
+    <!-- Here is where we put the poster title, author list, affiliations, and logos. -->
+    <header>
+      <hgroup> 
+        <h1>{{docOptions.title}}</h1>
+        <span class="authors">{{#authorList}}{{/authorList}}</span>
+        <span class="affiliations">{{#affiliationList}}{{/affiliationList}}</span>
+      </hgroup>
+    </header>
+    
+    <!-- Now we create one <section> for each chunk of html in the {{section}} list -->
+    {{#each sections}}
+    <section>
+      {{html}}
+    </section>
+    {{/each}}
+    
+    <!-- Here we put copyright, created date, etc. -->
+    <footer>
+      <time datetime="" pubdate></time>
+    </footer>
+    
+  </body>
+</html>

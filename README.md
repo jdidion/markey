@@ -12,7 +12,7 @@ MarKey supports a superset of Markdown, provided by the [marked](https://github.
 
 If you have Node.js installed already, you can install MarKey through npm:
 
-    npm install markey --save
+    npm install markey
 
 Otherwise, download the latest build for your OS [here](builds).
 
