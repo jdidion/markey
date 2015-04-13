@@ -10,22 +10,51 @@
   </head>
   <body>
     
-    <!-- Here is where we put the poster title, author list, affiliations, and logos. -->
+    <!-- Poster title, author list, affiliations, and logos. -->
     <header>
-      <hgroup> 
-        <h1>{{docOptions.title}}</h1>
-        <span class="authors">{{#authorList}}{{/authorList}}</span>
-        <span class="affiliations">{{#affiliationList}}{{/affiliationList}}</span>
-      </hgroup>
+	    <h1>{{docOptions.title}}</h1>
+	    <p class="authors">{{#authorList}}{{/authorList}}</p>
+	    <p class="affiliations">{{#affiliationList}}{{/affiliationList}}</p>
     </header>
     
-    <!-- Now we create one <section> for each chunk of html in the {{section}} list -->
-    {{#each sections}}
-    <section>
-      {{html}}
-    </section>
-    {{/each}}
+		<article>
+		
+    <!-- Create a three column layout -->
     
+		<div id="left">
+			
+			<section>
+	    {{section[0].html}}
+			</section>
+		
+			<section>
+	    {{section[1].html}}
+			</section>
+    
+		</div>
+		
+		<div id="middle">
+			
+			<section>
+	    {{section[2].html}}
+			</section>
+		
+		</div>
+		
+		<div id="right">
+			
+			<section>
+	    {{section[3].html}}
+			</section>
+		
+			<section>
+	    {{section[4].html}}
+			</section>
+			
+		</div>
+		
+	  </article>
+		
     <!-- Here we put copyright, created date, etc. -->
     <footer>
       <time datetime="" pubdate></time>

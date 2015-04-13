@@ -23,21 +23,46 @@ function Parser(cache) {
     // where dir1 and dir2 are directives. Directives
     // are translated into CSS classes.
 
-    var headingDirRegex = /(\[.+?\])\s+(.+)/
+    var headingDirRegex = /\[(.+?)\]\s+(.+)/
+    
+    var parseDirectives = function(s, classes) {
+        s = s.split(",")
+        ndirs = s.length
+        classes = classes || []
 
-    var parseHeadingDirs = function(s) {
-        dirs = JSON.parse(s)
-        return dirs.join(" ")
+        dirs = {
+            classes: [],
+            class_str: function() this.classes.join(" ") 
+        }
+
+        for (var i = 0; i < ndirs; i++) {
+            d = s[i].split("=")
+            if (d.length == 1) {
+                if (d[0] in classes) {
+                    dirs.classes.push(d[0])
+                }
+                else {
+                    d = [d[0], true]
+                }
+            }
+            if (d.length > 1) {
+                dirs[d[0]] = d[1]
+            }
+        }
+        
+        return dirs
     }
-
+    
     renderer.heading = function (text, level, raw) {
         var clsStr = ''
+        var dirs = {}
         if (text.charAt(0) === '[') {
-            match = headingDirRegex.exec(text)
-            clsStr = ' class="' + parseHeadingDirs(match[1]) + '"'
+            var match = headingDirRegex.exec(text)
+            dirs = parseDirectives(match[1], ["fit"])
+            clsStr = ' class="' + dirs.classes + '"'
             text = match[2]
         }
-        return '<h'
+        var html = '<h'
             + level
             + ' id="'
             + this.options.headerPrefix
@@ -49,6 +74,12 @@ function Parser(cache) {
             + '</h'
             + level
             + '>\n'
+        
+        if (dirs.header) {
+            html = "<header>" + html + "</header>"
+        }
+        
+        return html
     } 
 
     //-- Images --//
@@ -58,9 +89,9 @@ function Parser(cache) {
 
     renderer.image = function(href, title, text) {
         media = cache.fetch(href)
-        dirs = JSON.parse("[" + text + "]")
+        dirs = parseDirectives(text, []) // TODO: define valid img directives
     
-        var html = ''
+        var html = '<figure>'
     
         // separate handling for image, video, and table
         if (this.options.allowImages && media.type === 'image') {
@@ -69,14 +100,17 @@ function Parser(cache) {
             // Image manipulation libraries:
             // http://stackoverflow.com/questions/10692075/which-library-should-i-use-for-server-side-image-manipulation-on-node-js
         
-            html = '<img id="' + media.key + '" src="' + media.path + '"'
+            html += '<img id="' + media.key + '" src="' + media.path + '"'
             if (title) {
                 html += ' title="' + title + '"'
+            }
+            if (dirs.classes) {
+                html += ' class="' + dirs.class_str + '"'
             }
             html += this.options.xhtml ? '/>' : '>'
         }
         else if (this.options.allowVideo && media.type == 'video') {
-            html = '<video id="' 
+            html += '<video id="' 
                 + media.key 
                 + '" controls><source src="' 
                 + media.file 
@@ -85,7 +119,7 @@ function Parser(cache) {
                 + '"></video>'
         }
         else if (this.options.allowTables && media.type == 'table') {
-            html = require('tables').renderHTML(media, dirs)
+            html += require('tables').renderHTML(media, dirs)
         }
         else {
             console.log("Unknown or disallowed media type - " +
@@ -98,13 +132,10 @@ function Parser(cache) {
         }
         
         if (dirs.caption) {
-            html = '<figure>' 
-                + html 
-                + '<figcaption>' 
-                + dirs.caption 
-                + '</figcaption>'
-                + '</figure>'
+            html += '<figcaption>' + dirs.caption + '</figcaption>'
         }
+        
+        html += "</figure>"
         
         return html
     }
@@ -142,10 +173,7 @@ function UrlCache(cacheDir) {
         throw cacheDir + " is not a directory"
     }
     var dbFile = path.join(cacheDir, "__db.json")
-    var db = {}
-    if (fs.exists(dbFile)) {
-        db = JSON.parse(dbFile)
-    }
+    var db = require('levelup')(dbFile)
     
     var urlExt = function(mime) {
         return url.split('.').pop().split(/\#|\?/)[0]
@@ -172,14 +200,14 @@ function UrlCache(cacheDir) {
             var fs = require('fs')
             var key = this.cacheKey(url)
             
-            data = _db[key]
+            data = db.get(key)
             
             if (data) {
                 // make sure the file still exists
                 if (!fs.exists(data.path)) {
                     console.log("File is missing from cache - " + data.path)
                     data = null
-                    _db[key] = null
+                    db.del(key)
                 }
             }
             
@@ -223,17 +251,7 @@ function UrlCache(cacheDir) {
                 
                 data["type"] = classifyMIME(realMIME, ext)
                 
-                _db[file] = data
-                
-                // TODO: there's probably a better way than writing the
-                // whole file every time
-                fs.writeFile(_dbFile, JSON.stringify(_db, null, 4), function(err) {
-                    if(err) {
-                        console.log(err)
-                    } else {
-                        console.log("JSON saved to " + outputFilename)
-                    }
-                }) 
+                db.put(key, data)
             }
             
             return data
