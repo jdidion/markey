@@ -27,3 +27,8 @@ Otherwise, download the latest build for your OS [here](builds).
 ## Development
 
 MarKey is built on [Node.js]() and [AtomShell](). If you are interested in contributing, please look at the open [Issues]() or at the features on our [Roadmap](), select a task, and submit a pull request. We have put together some developer guidelines [here]().
+
+## Alternatives
+
+* MarKey was inspired by the excellent [DeckSet](http://www.decksetapp.com/)
+* [Pandoc](http://pandoc.org/README.html#producing-slide-shows-with-pandoc) can be used to convert Markdown to a number of different slide presentation formats 

@@ -23,33 +23,31 @@
     
 		<div id="left">
 			
+			{{#each left}}
 			<section>
-	    {{section[0].html}}
+	    {{html}}
 			</section>
-		
-			<section>
-	    {{section[1].html}}
-			</section>
+			{{/each}}
     
 		</div>
 		
 		<div id="middle">
 			
+			{{#each middle}}
 			<section>
-	    {{section[2].html}}
+	    {{html}}
 			</section>
+			{{/each}}
 		
 		</div>
 		
 		<div id="right">
 			
+			{{#each right}}
 			<section>
-	    {{section[3].html}}
+	    {{html}}
 			</section>
-		
-			<section>
-	    {{section[4].html}}
-			</section>
+			{{/each}}
 			
 		</div>
 		

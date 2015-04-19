@@ -359,15 +359,21 @@ header {
   text-align: center;
 }
 article {
-  *zoom: 1;
-}
-article:before,
-article:after {
-  content: '';
-  display: table;
-}
-article:after {
-  clear: both;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 article > div {
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
@@ -390,30 +396,27 @@ article > div:nth-child(3n + 1) {
 div#left {
   width: 15%;
 }
-div#left > section {
-  width: 100%;
-  height: calc(99.99% * 1/2 - (30px - 30px * 1/2));
-  margin-bottom: 30px;
-}
-div#left > section:last-child {
-  margin-bottom: 0;
-}
 div#middle {
-  width: 70%;
+  width: 65%;
 }
 div#middle > section {
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
-  column-count: 3;
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+div#middle > section:nth-child(n) {
+  margin-right: 30px;
+  float: left;
+  clear: none;
+}
+div#middle > section:last-child {
+  margin-right: 0;
+}
+div#middle > section:nth-child(3n) {
+  margin-right: 0;
+  float: right;
+}
+div#middle > section:nth-child(3n + 1) {
+  clear: left;
 }
 div#right {
   width: 15%;
-}
-div#right > section {
-  width: 100%;
-  height: calc(99.99% * 1/2 - (30px - 30px * 1/2));
-  margin-bottom: 30px;
-}
-div#right > section:last-child {
-  margin-bottom: 0;
 }

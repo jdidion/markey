@@ -1,6 +1,6 @@
+require('fs')
 
 function Parser(cache) {
-    var fs = require('fs')
     var marked = require('marked')
 
     marked.setOptions({
@@ -197,7 +197,6 @@ function UrlCache(cacheDir) {
         },  
         
         fetch : function(url) {
-            var fs = require('fs')
             var key = this.cacheKey(url)
             
             data = db.get(key)
@@ -312,43 +311,36 @@ function parseMarkeyFile(options) {
     return { docOptions: docOptions, sections: sections }
 }
 
-function mergeTemplate(mkData, options) {
-    var style = mkData.docOptions.style || options.defaultStyle
-    var context = {
-        docOptions: mkData.docOptions,
-        sections: mkData.sections,
-        style: mkData.style
+function getTemplate(docOptions, defaultOptions) {
+    var templateOptions = defaultOptions || {}
+    if (docOptions) {
+        for (var a in docOptions) {
+            templateOptions[a] = docOptions[a]
+        }
     }
-    
-    var hbOptions = {
-        strict: true
-    }
-    
-    var templateName = mkData.docOptions.template || options.defaultTemplate
-    var template = require('handlebars').templates[templateName]
-    return template(context, hbOptions)
+    var templateName = templateOptions.name || 'default'
+    var factory = require('styles/' + templateName + '.js')
+    return factory.template(templateOptions)
 }
 
 function markey(options) {
     // parse markey into sections of HTML
     var mkData = parseMarkeyFile(options)
     
+    // load the template
+    var template = getTemplate(mkData.docOptions.template, options.template)
+    
     // merge sections with template
-    var docHTML = mergeTemplate(mkData, options)
+    var docHTML = template(mkData)
     
     // write HTML file
     if (options.htmlFile) {
-        require('fs').writeFileSync(options.htmlFile, docHTML)
+        fs.writeFileSync(options.htmlFile, docHTML)
     }
     
     // write PDF
-    if (options.pdfFile) {
-        var pdfOptions = { 
-            filename: options.pdfFile, 
-        
-        }
-     
-        require('html-pdf').create(docHTML, pdfOptions).toFile()
+    if (options.pdf) {
+        require('html-pdf').create(docHTML, options.pdf).toFile()
     }
     
     return docHTML
