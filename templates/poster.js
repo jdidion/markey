@@ -7,7 +7,7 @@ var template = function(options) {
     
     return function(data) {
         var context = {
-            style: options.style || 'poster.styl',
+            style: options.style || '../styles/poster.css', // how to get abs path?
             left: data.sections.slice(0, left),
             middle: data.sections.slice(left, middle),
             right: data.sections.slice(middle, right)

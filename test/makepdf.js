@@ -7,7 +7,10 @@ var options = {
     width: "122cm",
     height: "122cm",
     border: "1cm",
-    
+    phantomPath: "/usr/local/bin/phantomjs"
 };
  
-pdf.create(html, options).toFile();
+pdf.create(html, options).toFile(function(err, res) {
+  if (err) return console.log(err);
+  console.log(res); 
+});

@@ -312,15 +312,15 @@ function parseMarkeyFile(options) {
 }
 
 function getTemplate(docOptions, defaultOptions) {
-    var templateOptions = defaultOptions || {}
+    var layoutOptions = defaultOptions || {}
     if (docOptions) {
         for (var a in docOptions) {
-            templateOptions[a] = docOptions[a]
+            layoutOptions[a] = docOptions[a]
         }
     }
-    var templateName = templateOptions.name || 'default'
-    var factory = require('styles/' + templateName + '.js')
-    return factory.template(templateOptions)
+    var templateName = layoutOptions.template || 'default'
+    var factory = require('templates/' + templateName + '.js')
+    return factory.template(layoutOptions)
 }
 
 function markey(options) {
@@ -328,7 +328,7 @@ function markey(options) {
     var mkData = parseMarkeyFile(options)
     
     // load the template
-    var template = getTemplate(mkData.docOptions.template, options.template)
+    var template = getTemplate(mkData.docOptions.layout, options.layout)
     
     // merge sections with template
     var docHTML = template(mkData)
@@ -340,7 +340,9 @@ function markey(options) {
     
     // write PDF
     if (options.pdf) {
-        require('html-pdf').create(docHTML, options.pdf).toFile()
+        require('html-pdf').create(docHTML, options.pdf).toFile(function(err, res) {
+            console.log(res); 
+        })
     }
     
     return docHTML

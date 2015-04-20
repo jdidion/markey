@@ -1,13 +1,13 @@
 html {
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Franklin Gothic Medium', 'Arial', 'sans-serif';
   font-weight: 300;
   color: #666;
-  font-size: 12px;
+  font-size: 64px;
   line-height: 1.75em;
 }
 @media (min-width: 600px) {
   html {
-    font-size: calc( 12px + (20 - 12) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 64px + (20 - 64) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -88,20 +88,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Franklin Gothic Medium', 'Arial', 'sans-serif';
   font-weight: 500;
   color: #111;
   clear: both;
 }
 h1 {
-  font-size: 27.854389952340615px;
+  font-size: 148.55674641248328px;
   margin-top: 0.942400822452556em;
   line-height: 1.130880986943067em;
   margin-bottom: 0.188480164490511em;
 }
 @media (min-width: 600px) {
   h1 {
-    font-size: calc( 27.854389952340615px + (46.42398325390103 - 27.854389952340615) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 148.55674641248328px + (46.42398325390103 - 148.55674641248328) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -113,14 +113,14 @@ h1 {
   }
 }
 h2 {
-  font-size: 23.53700340860508px;
+  font-size: 125.53068484589376px;
   margin-top: 1.115265165420465em;
   line-height: 1.338318198504558em;
-  margin-bottom: 0.251483121980101em;
+  margin-bottom: 0.228383674752094em;
 }
 @media (min-width: 600px) {
   h2 {
-    font-size: calc( 23.53700340860508px + (39.2283390143418 - 23.53700340860508) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 125.53068484589376px + (39.2283390143418 - 125.53068484589376) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -132,14 +132,14 @@ h2 {
   }
 }
 h3 {
-  font-size: 19.88880497489178px;
+  font-size: 106.07362653275617px;
   margin-top: 1.319837970815179em;
-  line-height: 1.583805564978215em;
-  margin-bottom: 0.303784103173448em;
+  line-height: 1.583805564978214em;
+  margin-bottom: 0.271433189602488em;
 }
 @media (min-width: 600px) {
   h3 {
-    font-size: calc( 19.88880497489178px + (33.1480082914863 - 19.88880497489178) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 106.07362653275617px + (33.1480082914863 - 106.07362653275617) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -151,14 +151,14 @@ h3 {
   }
 }
 h4 {
-  font-size: 16.806071548796314px;
+  font-size: 89.63238159358035px;
   margin-top: 1.561935513828041em;
   line-height: 1.87432261659365em;
-  margin-bottom: 0.368150361036631em;
+  margin-bottom: 0.322842713691425em;
 }
 @media (min-width: 600px) {
   h4 {
-    font-size: calc( 16.806071548796314px + (28.01011924799386 - 16.806071548796314) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 89.63238159358035px + (28.01011924799386 - 89.63238159358035) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -170,14 +170,14 @@ h4 {
   }
 }
 h5 {
-  font-size: 14.201156945318075px;
+  font-size: 75.73950370836307px;
   margin-top: 1.84844094752817em;
-  line-height: 2.218129137033804em;
+  line-height: 2.218129137033805em;
   margin-bottom: 0.369688189505634em;
 }
 @media (min-width: 600px) {
   h5 {
-    font-size: calc( 14.201156945318075px + (23.66859490886346 - 14.201156945318075) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 75.73950370836307px + (23.66859490886346 - 75.73950370836307) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -189,14 +189,14 @@ h5 {
   }
 }
 h6 {
-  font-size: 12px;
+  font-size: 64px;
   margin-top: 2.1875em;
   line-height: 2.625em;
-  margin-bottom: 0.619791666666667em;
+  margin-bottom: 0.4716796875em;
 }
 @media (min-width: 600px) {
   h6 {
-    font-size: calc( 12px + (20 - 12) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 64px + (20 - 64) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -204,7 +204,7 @@ h6 {
     font-size: 20px;
     margin-top: 2.1875em;
     line-height: 2.625em;
-    margin-bottom: 0.473958333333333em;
+    margin-bottom: 0.4443359375em;
   }
 }
 blockquote {
@@ -282,7 +282,7 @@ textarea {
   display: block;
   max-width: 100%;
   padding: 0.4375em;
-  font-size: 12px;
+  font-size: 64px;
   margin-bottom: 1.18125em;
 }
 @media (min-width: 600px) {
@@ -290,7 +290,7 @@ textarea {
   input[type="email"],
   input[type="password"],
   textarea {
-    font-size: calc( 12px + (20 - 12) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 64px + (20 - 64) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
@@ -306,14 +306,14 @@ input[type="submit"],
 button {
   display: block;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 64px;
   padding: 0.4375em 1.75em;
   margin-bottom: 1.18125em;
 }
 @media (min-width: 600px) {
   input[type="submit"],
   button {
-    font-size: calc( 12px + (20 - 12) * ((100vw - 600px) / (1000 - 600)) );
+    font-size: calc( 64px + (20 - 64) * ((100vw - 600px) / (1000 - 600)) );
   }
 }
 @media (min-width: 1000px) {
