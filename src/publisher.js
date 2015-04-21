@@ -261,7 +261,7 @@ function UrlCache(cacheDir) {
 // -- main --//
 
 function parseMarkeyFile(options) {
-    markeyFile = options.markeyFile || process.stdin
+    var markeyFile = options.markeyFile || process.stdin
     
     // load markey text
     var mk = fs.readFileSync(markeyFile, "utf8")
@@ -323,7 +323,7 @@ function getTemplate(docOptions, defaultOptions) {
     return factory.template(layoutOptions)
 }
 
-function markey(options) {
+function publish(options) {
     // parse markey into sections of HTML
     var mkData = parseMarkeyFile(options)
     
