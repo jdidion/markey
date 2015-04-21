@@ -26,7 +26,7 @@ Otherwise, download the latest build for your OS [here](builds).
 
 ## Development
 
-MarKey is built on [Node.js]() and [AtomShell](). If you are interested in contributing, please look at the open [Issues]() or at the features on our [Roadmap](), select a task, and submit a pull request. We have put together some developer guidelines [here]().
+MarKey is built on [Node.js]() and [Electron](https://github.com/atom/electron). If you are interested in contributing, please look at the open [Issues]() or at the features on our [Roadmap](), select a task, and submit a pull request. We have put together some developer guidelines [here]().
 
 ## Alternatives
 
