@@ -19,6 +19,11 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600})
+    
+    // Create the menu
+    var Menu = require('menu')
+    var menuTemplate = require('mainmenu').template
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
 
     // and load the index.html of the app.
     mainWindow.loadUrl('file://' + __dirname + '/index.html')
